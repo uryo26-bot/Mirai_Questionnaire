@@ -1,0 +1,37 @@
+{
+  "scale_max": 7,
+  "groups": [
+    {
+      "id": "juku",
+      "label": "塾",
+      "metrics": [
+        { "key": "juku_satisfaction", "label": "授業満足度" },
+        { "key": "juku_continuation", "label": "来月も頑張れそう" }
+      ]
+    },
+    {
+      "id": "home",
+      "label": "家庭学習",
+      "metrics": [
+        { "key": "home_plan_achievement", "label": "計画達成" },
+        { "key": "home_continuation", "label": "継続できそう" }
+      ]
+    },
+    {
+      "id": "school",
+      "label": "学校",
+      "metrics": [
+        { "key": "school_understanding", "label": "授業理解" },
+        { "key": "school_test_expectation", "label": "テスト自信度" }
+      ]
+    },
+    {
+      "id": "study",
+      "label": "勉強",
+      "metrics": [
+        { "key": "study_fun", "label": "楽しさ" },
+        { "key": "study_improvement_motivation", "label": "モチベーション" }
+      ]
+    }
+  ]
+}

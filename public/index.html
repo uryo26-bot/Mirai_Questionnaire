@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>状況確認 | 未来教室 熊取校</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header>
+      <p class="school-name">未来教室 熊取校</p>
+      <label>
+        実施月
+        <select id="month-select" disabled>
+          <option value="">読み込み中</option>
+        </select>
+      </label>
+    </header>
+
+    <main class="overview">
+      <section class="panel" id="campus-metrics">
+        <h2>校舎の主要指標</h2>
+        <p class="empty">読み込み中です。</p>
+      </section>
+      <section class="panel" id="alerts">
+        <h2>要確認</h2>
+        <p class="empty">読み込み中です。</p>
+      </section>
+      <section class="panel" id="student-metrics">
+        <h2>生徒ごとの主要指標</h2>
+        <p class="empty">読み込み中です。</p>
+      </section>
+    </main>
+
+    <script src="/overview.js"></script>
+  </body>
+</html>
