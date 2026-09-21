@@ -1,4 +1,5 @@
 const monthSelect = document.getElementById("month-select");
+const responseCountEl = document.getElementById("response-count");
 const campusEl = document.getElementById("campus-metrics");
 const alertsEl = document.getElementById("alerts");
 const studentsEl = document.getElementById("student-metrics");
@@ -61,7 +62,7 @@ function metricRow(item) {
   return row;
 }
 
-function renderCampus(groups) {
+function renderCampus(groups, responseCount) {
   clear(campusEl);
   campusEl.appendChild(heading("校舎の主要指標"));
 
@@ -75,10 +76,12 @@ function renderCampus(groups) {
 
     group.items.forEach((item) => {
       const row = metricRow(item);
-      const count = document.createElement("span");
-      count.className = "metric-count";
-      count.textContent = `回答 ${item.answered}人`;
-      row.appendChild(count);
+      if (item.answered !== responseCount) {
+        const count = document.createElement("span");
+        count.className = "metric-count";
+        count.textContent = `回答 ${item.answered} / ${responseCount}人`;
+        row.appendChild(count);
+      }
       block.appendChild(row);
     });
 
@@ -179,15 +182,25 @@ async function loadOverview(month) {
   return response.json();
 }
 
+function renderResponseCount(count) {
+  if (typeof count === "number") {
+    responseCountEl.textContent = `回答 ${count}人`;
+    return;
+  }
+  responseCountEl.textContent = "回答 —人";
+}
+
 function renderOverview(data) {
   fillMonthSelect(data.months, data.selected_month);
-  renderCampus(data.campus_metrics);
+  renderResponseCount(data.response_count);
+  renderCampus(data.campus_metrics, data.response_count);
   renderAlerts(data.alerts, data.rules_note);
   renderStudents(data.students);
 }
 
 function renderError() {
   const message = "表示用データを読み込めませんでした。";
+  renderResponseCount(null);
   clear(campusEl);
   clear(alertsEl);
   clear(studentsEl);
