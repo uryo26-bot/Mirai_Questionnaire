@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+  color: #222;
+  background: #f7f7f7;
+  line-height: 1.5;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  padding: 1rem 1.25rem;
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+.school-name {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+select {
+  min-width: 10rem;
+  padding: 0.3rem 0.4rem;
+}
+
+.overview {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+}
+
+.panel {
+  min-width: 0;
+  max-height: calc(100vh - 6rem);
+  overflow: auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+
+.panel h2,
+.alert-card h3,
+.student-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+
+.metric-group h3,
+.metric-group h4 {
+  margin: 0.75rem 0 0.35rem;
+  font-size: 0.9rem;
+}
+
+.metric-group:first-of-type h3,
+.metric-group:first-of-type h4 {
+  margin-top: 0;
+}
+
+.empty,
+.rules-note {
+  margin: 0 0 0.75rem;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.metric-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.15rem 0.75rem;
+  margin-bottom: 0.45rem;
+  align-items: center;
+}
+
+.metric-label {
+  font-size: 0.9rem;
+}
+
+.metric-value {
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-count {
+  grid-column: 1 / -1;
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.bar {
+  grid-column: 1 / -1;
+  height: 0.4rem;
+  background: #e6e6e6;
+}
+
+.bar > span {
+  display: block;
+  height: 100%;
+  background: #666;
+}
+
+.alert-card,
+.student-card {
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e5e5e5;
+}
+
+.alert-card:first-of-type,
+.student-card:first-of-type {
+  margin-top: 0.25rem;
+}
+
+.alert-card ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.alert-card li {
+  margin-bottom: 0.25rem;
+}
+
+.reason-label {
+  font-weight: 700;
+}
+
+.placeholder {
+  padding: 1rem 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .overview {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    max-height: none;
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "note": "仮ルール。正式な業務閾値ではない。後からこのファイルだけ変える。",
+  "ui_note": "判定は仮ルールです。断定ではありません。",
+  "low_score_max": 3,
+  "attention_max": 2,
+  "attention_keys": ["juku_continuation", "home_continuation"],
+  "drop_min": 2,
+  "labels": {
+    "low": "要確認",
+    "attention": "注意",
+    "drop": "状態変化あり",
+    "missing": "要確認"
+  }
+}
