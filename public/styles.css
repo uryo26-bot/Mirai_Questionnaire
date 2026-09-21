@@ -36,6 +36,11 @@ select {
   padding: 0.3rem 0.4rem;
 }
 
+.response-count {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
 .overview {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
