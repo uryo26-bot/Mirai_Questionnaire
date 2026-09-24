@@ -36,6 +36,7 @@ app.get("/api/overview", (req, res) => {
   try {
     const overview = buildOverview(readJsonFile(demoJsonPath), {
       metricConfig: readJsonFile(metricConfigPath),
+      questionConfig: readJsonFile(questionConfigPath),
       rules: readJsonFile(alertRulesPath),
       month: req.query.month
     });
