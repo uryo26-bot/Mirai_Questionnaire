@@ -4,55 +4,55 @@
       "id": "juku",
       "label": "塾",
       "questions": [
-        "juku_satisfaction",
-        "juku_security",
-        "juku_fun",
-        "juku_clarity",
-        "juku_question",
-        "juku_motivation",
-        "juku_homework",
-        "juku_growth",
-        "juku_continuation"
+        { "key": "juku_satisfaction", "label": "授業満足度" },
+        { "key": "juku_security", "label": "安心感" },
+        { "key": "juku_fun", "label": "楽しさ" },
+        { "key": "juku_clarity", "label": "分かりやすさ" },
+        { "key": "juku_question", "label": "質問しやすさ" },
+        { "key": "juku_motivation", "label": "モチベーション" },
+        { "key": "juku_homework", "label": "宿題達成の実感" },
+        { "key": "juku_growth", "label": "成長実感" },
+        { "key": "juku_continuation", "label": "来月も頑張れそう" }
       ]
     },
     {
       "id": "home",
       "label": "家庭学習",
       "questions": [
-        "home_plan_achievement",
-        "home_study_environment",
-        "home_pace_drop",
-        "home_problem_solving",
-        "home_motivation",
-        "home_growth",
-        "home_continuation"
+        { "key": "home_plan_achievement", "label": "計画達成" },
+        { "key": "home_study_environment", "label": "安心感" },
+        { "key": "home_pace_drop", "label": "家でも集中" },
+        { "key": "home_problem_solving", "label": "すぐ解決できる" },
+        { "key": "home_motivation", "label": "モチベーション" },
+        { "key": "home_growth", "label": "成長実感" },
+        { "key": "home_continuation", "label": "継続できそう" }
       ]
     },
     {
       "id": "school",
       "label": "学校",
       "questions": [
-        "school_understanding",
-        "school_security",
-        "school_fun",
-        "school_clarity",
-        "school_question",
-        "school_class_motivation",
-        "school_class_satisfaction",
-        "school_test_motivation",
-        "school_test_satisfaction",
-        "school_growth",
-        "school_test_expectation",
-        "school_continuation"
+        { "key": "school_understanding", "label": "授業理解" },
+        { "key": "school_security", "label": "安心感" },
+        { "key": "school_fun", "label": "楽しさ" },
+        { "key": "school_clarity", "label": "分かりやすさ" },
+        { "key": "school_question", "label": "質問しやすさ" },
+        { "key": "school_class_motivation", "label": "授業のモチベーション" },
+        { "key": "school_class_satisfaction", "label": "授業の自己評価" },
+        { "key": "school_test_motivation", "label": "テストのモチベーション" },
+        { "key": "school_test_satisfaction", "label": "テストの自己評価" },
+        { "key": "school_growth", "label": "成長実感" },
+        { "key": "school_test_expectation", "label": "テスト自信度" },
+        { "key": "school_continuation", "label": "来月も頑張れそう" }
       ]
     },
     {
       "id": "study",
       "label": "勉強",
       "questions": [
-        "study_fun",
-        "study_goal",
-        "study_improvement_motivation"
+        { "key": "study_fun", "label": "楽しさ" },
+        { "key": "study_goal", "label": "目標があるか" },
+        { "key": "study_improvement_motivation", "label": "モチベーション" }
       ],
       "text_fields": [
         { "key": "study_daily_mitutes", "label": "自主勉強時間" },
