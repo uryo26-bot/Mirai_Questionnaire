@@ -1,0 +1,64 @@
+{
+  "groups": [
+    {
+      "id": "juku",
+      "label": "塾",
+      "questions": [
+        "juku_satisfaction",
+        "juku_security",
+        "juku_fun",
+        "juku_clarity",
+        "juku_question",
+        "juku_motivation",
+        "juku_homework",
+        "juku_growth",
+        "juku_continuation"
+      ]
+    },
+    {
+      "id": "home",
+      "label": "家庭学習",
+      "questions": [
+        "home_plan_achievement",
+        "home_study_environment",
+        "home_pace_drop",
+        "home_problem_solving",
+        "home_motivation",
+        "home_growth",
+        "home_continuation"
+      ]
+    },
+    {
+      "id": "school",
+      "label": "学校",
+      "questions": [
+        "school_understanding",
+        "school_security",
+        "school_fun",
+        "school_clarity",
+        "school_question",
+        "school_class_motivation",
+        "school_class_satisfaction",
+        "school_test_motivation",
+        "school_test_satisfaction",
+        "school_growth",
+        "school_test_expectation",
+        "school_continuation"
+      ]
+    },
+    {
+      "id": "study",
+      "label": "勉強",
+      "questions": [
+        "study_fun",
+        "study_goal",
+        "study_improvement_motivation"
+      ],
+      "text_fields": [
+        { "key": "study_daily_mitutes", "label": "自主勉強時間" },
+        { "key": "study_concerns", "label": "今の悩み" },
+        { "key": "study_next_month_contents", "label": "来月取り組みたいこと" }
+      ]
+    }
+  ]
+}

@@ -141,6 +141,168 @@ select {
   font-weight: 700;
 }
 
+.alert-card h3 a,
+.student-card h3 a {
+  color: inherit;
+}
+
+.detail {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-open {
+  height: auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: auto;
+}
+
+.detail-header {
+  gap: 0.35rem 1rem;
+  padding: 0.45rem 0.9rem;
+}
+
+.detail-header h1,
+.detail-title,
+.student-grade {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.student-grade,
+.detail-title {
+  font-weight: 400;
+}
+
+.detail-header .rules-note {
+  flex-basis: 100%;
+  margin: 0;
+}
+
+.detail-main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem 0.6rem;
+}
+
+.domain {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 0.35rem 0.6rem;
+}
+
+.detail-open .domain {
+  flex: none;
+  max-height: 9.5rem;
+}
+
+.detail-open .domain.is-open {
+  max-height: none;
+  overflow: visible;
+}
+
+.domain-toggle {
+  align-self: flex-start;
+  margin: 0 0 0.25rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.domain-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 0.4rem 0.8rem;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.detail-open .domain.is-open .domain-summary {
+  overflow: visible;
+}
+
+.domain-alerts h3 {
+  margin: 0 0 0.2rem;
+  font-size: 0.85rem;
+}
+
+.domain-alerts ul {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.domain-alerts li {
+  margin-bottom: 0.15rem;
+  font-size: 0.8rem;
+}
+
+.badge {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0 0.25rem;
+  border: 1px solid #999;
+  font-size: 0.75rem;
+}
+
+.metric-delta {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+}
+
+.metric-delta:empty {
+  display: none;
+}
+
+.domain .metric-row {
+  grid-template-columns: 1fr auto auto;
+  margin-bottom: 0.25rem;
+}
+
+.domain-extra {
+  display: none;
+  margin-top: 0.45rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid #e5e5e5;
+}
+
+.domain.is-open .domain-extra {
+  display: block;
+}
+
+.text-answer {
+  display: grid;
+  gap: 0.1rem;
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+}
+
+.text-answer span:first-child {
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .domain-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
 .placeholder {
   padding: 1rem 1.25rem;
 }
