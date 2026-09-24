@@ -108,7 +108,7 @@ function renderAlerts(alerts, rulesNote) {
     card.className = "alert-card";
 
     const name = document.createElement("h3");
-    name.textContent = alert.student_name;
+    name.appendChild(studentLink(alert, monthSelect.value));
     card.appendChild(name);
 
     const list = document.createElement("ul");
@@ -126,6 +126,17 @@ function renderAlerts(alerts, rulesNote) {
   });
 }
 
+function studentLink(student, month) {
+  const link = document.createElement("a");
+  const params = new URLSearchParams({
+    student_id: String(student.student_id),
+    month
+  });
+  link.href = `/detail.html?${params.toString()}`;
+  link.textContent = student.student_name;
+  return link;
+}
+
 function renderStudents(students) {
   clear(studentsEl);
   studentsEl.appendChild(heading("生徒ごとの主要指標"));
@@ -135,7 +146,7 @@ function renderStudents(students) {
     card.className = "student-card";
 
     const name = document.createElement("h3");
-    name.textContent = student.student_name;
+    name.appendChild(studentLink(student, monthSelect.value));
     card.appendChild(name);
 
     student.groups.forEach((group) => {

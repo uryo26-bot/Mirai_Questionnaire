@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const { buildOverview } = require("./lib/overview");
+const { buildStudentDetail } = require("./lib/student");
 
 const app = express();
 const port = Number(process.env.PORT) || 3000;
@@ -14,6 +15,7 @@ const demoJsonPath = path.join(
 );
 const metricConfigPath = path.join(__dirname, "config", "key-metrics.json");
 const alertRulesPath = path.join(__dirname, "config", "alert-rules.json");
+const questionConfigPath = path.join(__dirname, "config", "questions.json");
 
 app.use(express.static(publicDir));
 
@@ -45,6 +47,30 @@ app.get("/api/overview", (req, res) => {
     }
     console.error("failed to build overview");
     res.status(500).json({ error: "overview_unavailable" });
+  }
+});
+
+app.get("/api/student", (req, res) => {
+  try {
+    const detail = buildStudentDetail(readJsonFile(demoJsonPath), {
+      metricConfig: readJsonFile(metricConfigPath),
+      questionConfig: readJsonFile(questionConfigPath),
+      rules: readJsonFile(alertRulesPath),
+      studentId: req.query.student_id,
+      month: req.query.month
+    });
+    res.json(detail);
+  } catch (err) {
+    if (err.code === "unknown_month") {
+      res.status(400).json({ error: "unknown_month" });
+      return;
+    }
+    if (err.code === "unknown_student") {
+      res.status(404).json({ error: "unknown_student" });
+      return;
+    }
+    console.error("failed to build student detail");
+    res.status(500).json({ error: "student_unavailable" });
   }
 });
 

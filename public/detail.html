@@ -6,13 +6,24 @@
     <title>生徒詳細 | 未来教室 熊取校</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
-  <body>
-    <header>
+  <body class="detail">
+    <header class="detail-header">
       <p class="school-name">未来教室 熊取校</p>
+      <h1 id="student-name">読み込み中</h1>
+      <p id="student-grade" class="student-grade"></p>
+      <p class="detail-title">回答詳細画面</p>
+      <label>
+        実施月
+        <select id="month-select" disabled>
+          <option value="">読み込み中</option>
+        </select>
+      </label>
+      <a href="/">状況確認へ</a>
+      <p id="rules-note" class="rules-note"></p>
     </header>
-    <main class="placeholder">
-      <p>生徒詳細は、次の作業で実装します。</p>
-      <p><a href="/">状況確認へ</a></p>
+    <main id="detail-main" class="detail-main">
+      <p class="empty">読み込み中です。</p>
     </main>
+    <script src="/detail.js"></script>
   </body>
 </html>
