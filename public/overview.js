@@ -111,19 +111,66 @@ function renderAlerts(alerts, rulesNote) {
     name.appendChild(studentLink(alert, monthSelect.value));
     card.appendChild(name);
 
-    const list = document.createElement("ul");
-    alert.reasons.forEach((reason) => {
-      const item = document.createElement("li");
-      const label = document.createElement("span");
-      label.className = "reason-label";
-      label.textContent = reason.label;
-      item.append(label, document.createTextNode(` ${reason.text}`));
-      list.appendChild(item);
+    const sections = document.createElement("div");
+    sections.className = "alert-sections";
+    alert.groups.forEach((group) => {
+      sections.appendChild(renderAlertGroup(group));
     });
-
-    card.appendChild(list);
+    card.appendChild(sections);
     alertsEl.appendChild(card);
   });
+
+  const hint = document.createElement("p");
+  hint.className = "alert-hint";
+  hint.textContent = "生徒をクリックで詳細を表示";
+  alertsEl.appendChild(hint);
+}
+
+function alertItem(item) {
+  const row = document.createElement("li");
+  const name = document.createElement("span");
+  name.textContent = item.label;
+  row.appendChild(name);
+  item.badges.forEach((badge) => {
+    const mark = document.createElement("span");
+    mark.className = "badge";
+    mark.textContent = badge;
+    row.appendChild(mark);
+  });
+  return row;
+}
+
+function renderAlertGroup(group) {
+  const section = document.createElement("section");
+  section.className = "alert-section";
+
+  const title = document.createElement("h4");
+  title.textContent = group.label;
+  section.appendChild(title);
+
+  const visible = group.items.slice(0, 3);
+  const hidden = group.items.slice(3);
+  const list = document.createElement("ul");
+  visible.forEach((item) => {
+    list.appendChild(alertItem(item));
+  });
+  section.appendChild(list);
+
+  if (hidden.length > 0) {
+    const more = document.createElement("button");
+    more.type = "button";
+    more.className = "alert-more";
+    more.textContent = `+${hidden.length}件`;
+    more.addEventListener("click", () => {
+      hidden.forEach((item) => {
+        list.appendChild(alertItem(item));
+      });
+      more.remove();
+    });
+    section.appendChild(more);
+  }
+
+  return section;
 }
 
 function studentLink(student, month) {

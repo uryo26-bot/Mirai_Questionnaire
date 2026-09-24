@@ -128,13 +128,44 @@ select {
   margin-top: 0.25rem;
 }
 
-.alert-card ul {
-  margin: 0;
-  padding-left: 1.1rem;
+.alert-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
 }
 
-.alert-card li {
-  margin-bottom: 0.25rem;
+.alert-section h4 {
+  margin: 0 0 0.2rem;
+  font-size: 0.8rem;
+}
+
+.alert-section ul {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.alert-section li {
+  margin-bottom: 0.15rem;
+  font-size: 0.8rem;
+}
+
+.alert-more {
+  display: inline-block;
+  margin-top: 0.15rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.8rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.alert-hint {
+  margin: 0.85rem 0 0;
+  color: #666;
+  font-size: 0.8rem;
 }
 
 .reason-label {
