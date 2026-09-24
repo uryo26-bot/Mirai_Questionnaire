@@ -1,8 +1,8 @@
 {
   "note": "仮ルール。正式な業務閾値ではない。後からこのファイルだけ変える。",
   "ui_note": "判定は仮ルールです。断定ではありません。",
-  "low_score_max": 3,
-  "attention_max": 2,
+  "low_score_max": 2,
+  "attention_max": 1,
   "attention_keys": ["juku_continuation", "home_continuation"],
   "drop_min": 2,
   "labels": {
