@@ -1,3 +1,16 @@
+:root {
+  --page: #f6f8f0;
+  --surface: #ffffff;
+  --text: #233021;
+  --brand: #315b25;
+  --muted: #4f5e48;
+  --line: #dce4d2;
+  --line-strong: #b1bf90;
+  --bar-track: #e4eadc;
+  --bar: #3b7425;
+  --chip: #f6f8ef;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -5,8 +18,8 @@
 body {
   margin: 0;
   font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
-  color: #222;
-  background: #f7f7f7;
+  color: var(--text);
+  background: var(--page);
   line-height: 1.5;
 }
 
@@ -16,13 +29,19 @@ header {
   align-items: center;
   gap: 1rem 1.5rem;
   padding: 1rem 1.25rem;
-  background: #fff;
-  border-bottom: 1px solid #ccc;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+header a {
+  color: var(--brand);
 }
 
 .school-name {
   margin: 0;
+  color: var(--brand);
   font-size: 1.1rem;
+  font-weight: 700;
 }
 
 label {
@@ -34,6 +53,9 @@ label {
 select {
   min-width: 10rem;
   padding: 0.3rem 0.4rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
 }
 
 .response-count {
@@ -52,8 +74,8 @@ select {
   min-width: 0;
   max-height: calc(100vh - 6rem);
   overflow: auto;
-  background: #fff;
-  border: 1px solid #ccc;
+  background: var(--surface);
+  border: 1px solid var(--line);
   padding: 1rem;
 }
 
@@ -62,6 +84,106 @@ select {
 .student-card h3 {
   margin: 0 0 0.75rem;
   font-size: 1rem;
+}
+
+.panel h2 {
+  color: var(--brand);
+}
+
+#campus-metrics {
+  align-self: start;
+  border: 2px solid var(--brand);
+  border-radius: 1.4rem;
+  container-type: inline-size;
+}
+
+.campus-group {
+  display: grid;
+  grid-template-columns: 4.6rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.7rem;
+  padding: 0.65rem 0.7rem;
+  border: 2px solid var(--text);
+  border-radius: 1.15rem;
+}
+
+.campus-group h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.campus-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.campus-card {
+  min-width: 0;
+  margin: 0;
+  padding: 0.4rem 0.35rem 0.45rem;
+  border: 2px solid var(--bar);
+  border-radius: 0.75rem;
+  text-align: center;
+}
+
+.campus-card-label,
+.campus-card-score,
+.campus-card .metric-count {
+  margin: 0;
+}
+
+.campus-card-label {
+  font-size: 0.75rem;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+@container (max-width: 28rem) {
+  .campus-group {
+    grid-template-columns: 4.4rem minmax(0, 1fr);
+    gap: 0.4rem;
+    padding: 0.55rem 0.5rem;
+  }
+
+  .campus-group h3 {
+    font-size: 0.85rem;
+  }
+
+  .campus-card {
+    padding: 0.35rem 0.25rem 0.4rem;
+  }
+
+  .campus-card-label {
+    font-size: 0.68rem;
+  }
+
+  .campus-card-value {
+    font-size: 1.15rem;
+  }
+}
+
+.campus-card-score {
+  color: var(--brand);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.campus-card-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.campus-card-scale {
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.campus-card .metric-count {
+  margin-top: 0.15rem;
 }
 
 .metric-group h3,
@@ -78,7 +200,7 @@ select {
 .empty,
 .rules-note {
   margin: 0 0 0.75rem;
-  color: #666;
+  color: var(--muted);
   font-size: 0.85rem;
 }
 
@@ -100,32 +222,146 @@ select {
 
 .metric-count {
   grid-column: 1 / -1;
-  color: #666;
+  color: var(--muted);
   font-size: 0.8rem;
 }
 
 .bar {
   grid-column: 1 / -1;
   height: 0.4rem;
-  background: #e6e6e6;
+  background: var(--bar-track);
 }
 
 .bar > span {
   display: block;
   height: 100%;
-  background: #666;
+  background: var(--bar);
 }
 
-.alert-card,
-.student-card {
+.alert-card {
   margin-top: 0.85rem;
   padding-top: 0.75rem;
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid var(--line);
 }
 
-.alert-card:first-of-type,
-.student-card:first-of-type {
+.alert-card:first-of-type {
   margin-top: 0.25rem;
+}
+
+#student-metrics {
+  border: 2px solid var(--text);
+  border-radius: 1.4rem;
+  container-type: inline-size;
+}
+
+.student-card {
+  display: grid;
+  grid-template-columns: 5.2rem minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0.5rem;
+  min-height: 12.9rem;
+  margin: 0.7rem 0 0;
+  padding: 0.65rem 0.7rem;
+  border: 2px solid var(--text);
+  border-radius: 1.15rem;
+}
+
+.student-card h3 {
+  align-self: center;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.student-domains {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.student-domain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  margin: 0;
+  padding: 0.4rem 0.55rem;
+  border: 2px solid var(--bar);
+  border-radius: 0.7rem;
+}
+
+.student-domain-label,
+.student-metric {
+  margin: 0;
+}
+
+.student-domain-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.student-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+}
+
+.student-metric {
+  min-width: 0;
+  text-align: center;
+}
+
+.student-metric-label,
+.student-metric-score {
+  margin: 0;
+}
+
+.student-metric-label {
+  font-size: 0.72rem;
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+.student-metric-score {
+  color: var(--brand);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.student-metric-value {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.student-metric-scale {
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+@container (max-width: 28rem) {
+  .student-card {
+    grid-template-columns: 4.2rem minmax(0, 1fr);
+    min-height: 18rem;
+  }
+
+  .student-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .student-metric-value {
+    font-size: 1.05rem;
+  }
+}
+
+.student-hint {
+  margin: 0.9rem 0 0.1rem;
+  font-size: 0.85rem;
+  text-align: center;
 }
 
 .alert-sections {
@@ -155,7 +391,7 @@ select {
   padding: 0;
   border: 0;
   background: transparent;
-  color: inherit;
+  color: var(--brand);
   font: inherit;
   font-size: 0.8rem;
   text-decoration: underline;
@@ -164,7 +400,7 @@ select {
 
 .alert-hint {
   margin: 0.85rem 0 0;
-  color: #666;
+  color: var(--muted);
   font-size: 0.8rem;
 }
 
@@ -174,7 +410,7 @@ select {
 
 .alert-card h3 a,
 .student-card h3 a {
-  color: inherit;
+  color: var(--brand);
 }
 
 .detail {
@@ -230,8 +466,8 @@ select {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: #fff;
-  border: 1px solid #ccc;
+  background: var(--surface);
+  border: 1px solid var(--line);
   padding: 0.35rem 0.6rem;
 }
 
@@ -251,7 +487,7 @@ select {
   padding: 0;
   border: 0;
   background: transparent;
-  color: inherit;
+  color: var(--brand);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
@@ -288,7 +524,9 @@ select {
   display: inline-block;
   margin-left: 0.35rem;
   padding: 0 0.25rem;
-  border: 1px solid #999;
+  border: 1px solid var(--line-strong);
+  background: var(--chip);
+  color: var(--text);
   font-size: 0.75rem;
 }
 
@@ -310,7 +548,7 @@ select {
   display: none;
   margin-top: 0.45rem;
   padding-top: 0.45rem;
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid var(--line);
 }
 
 .domain.is-open .domain-extra {
