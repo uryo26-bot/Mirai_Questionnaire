@@ -9,20 +9,6 @@ function monthLabel(yearMonth) {
   return `${year}年${Number(month)}月`;
 }
 
-function formatScore(value, scale) {
-  if (value === null || value === undefined) {
-    return "—";
-  }
-  return `${value} / ${scale}`;
-}
-
-function barWidth(value, scale) {
-  if (value === null || value === undefined || !scale) {
-    return "0%";
-  }
-  return `${(value / scale) * 100}%`;
-}
-
 function clear(element) {
   element.replaceChildren();
 }
@@ -40,26 +26,43 @@ function emptyMessage(text) {
   return p;
 }
 
-function metricRow(item) {
-  const row = document.createElement("div");
-  row.className = "metric-row";
-
-  const label = document.createElement("span");
-  label.className = "metric-label";
-  label.textContent = item.label;
+function campusScore(item) {
+  const score = document.createElement("p");
+  score.className = "campus-card-score";
 
   const value = document.createElement("span");
-  value.className = "metric-value";
-  value.textContent = formatScore(item.value ?? item.average, item.scale);
+  value.className = "campus-card-value";
+  if (item.average === null || item.average === undefined) {
+    value.textContent = "—";
+    score.appendChild(value);
+    return score;
+  }
 
-  const bar = document.createElement("div");
-  bar.className = "bar";
-  const fill = document.createElement("span");
-  fill.style.width = barWidth(item.value ?? item.average, item.scale);
-  bar.appendChild(fill);
+  value.textContent = String(item.average);
+  const scale = document.createElement("span");
+  scale.className = "campus-card-scale";
+  scale.textContent = ` / ${item.scale}`;
+  score.append(value, scale);
+  return score;
+}
 
-  row.append(label, value, bar);
-  return row;
+function campusCard(item, responseCount) {
+  const card = document.createElement("article");
+  card.className = "campus-card";
+
+  const label = document.createElement("p");
+  label.className = "campus-card-label";
+  label.textContent = item.label;
+  card.append(label, campusScore(item));
+
+  if (item.answered !== responseCount) {
+    const count = document.createElement("p");
+    count.className = "metric-count";
+    count.textContent = `回答 ${item.answered} / ${responseCount}人`;
+    card.appendChild(count);
+  }
+
+  return card;
 }
 
 function renderCampus(groups, responseCount) {
@@ -68,23 +71,18 @@ function renderCampus(groups, responseCount) {
 
   groups.forEach((group) => {
     const block = document.createElement("section");
-    block.className = "metric-group";
+    block.className = "campus-group";
 
     const title = document.createElement("h3");
     title.textContent = group.label;
-    block.appendChild(title);
 
+    const cards = document.createElement("div");
+    cards.className = "campus-cards";
     group.items.forEach((item) => {
-      const row = metricRow(item);
-      if (item.answered !== responseCount) {
-        const count = document.createElement("span");
-        count.className = "metric-count";
-        count.textContent = `回答 ${item.answered} / ${responseCount}人`;
-        row.appendChild(count);
-      }
-      block.appendChild(row);
+      cards.appendChild(campusCard(item, responseCount));
     });
 
+    block.append(title, cards);
     campusEl.appendChild(block);
   });
 }
@@ -184,9 +182,55 @@ function studentLink(student, month) {
   return link;
 }
 
+function studentScore(item) {
+  const score = document.createElement("p");
+  score.className = "student-metric-score";
+
+  const value = document.createElement("span");
+  value.className = "student-metric-value";
+  if (item.value === null || item.value === undefined) {
+    value.textContent = "—";
+    score.appendChild(value);
+    return score;
+  }
+
+  value.textContent = String(item.value);
+  const scale = document.createElement("span");
+  scale.className = "student-metric-scale";
+  scale.textContent = ` / ${item.scale}`;
+  score.append(value, scale);
+  return score;
+}
+
+function studentDomain(group) {
+  const domain = document.createElement("section");
+  domain.className = "student-domain";
+
+  const title = document.createElement("p");
+  title.className = "student-domain-label";
+  title.textContent = group.label;
+
+  const metrics = document.createElement("div");
+  metrics.className = "student-metrics";
+  group.items.forEach((item) => {
+    const row = document.createElement("div");
+    row.className = "student-metric";
+
+    const label = document.createElement("p");
+    label.className = "student-metric-label";
+    label.textContent = item.label;
+
+    row.append(label, studentScore(item));
+    metrics.appendChild(row);
+  });
+
+  domain.append(title, metrics);
+  return domain;
+}
+
 function renderStudents(students) {
   clear(studentsEl);
-  studentsEl.appendChild(heading("生徒ごとの主要指標"));
+  studentsEl.appendChild(heading("各生徒の回答"));
 
   students.forEach((student) => {
     const card = document.createElement("article");
@@ -194,25 +238,21 @@ function renderStudents(students) {
 
     const name = document.createElement("h3");
     name.appendChild(studentLink(student, monthSelect.value));
-    card.appendChild(name);
 
+    const domains = document.createElement("div");
+    domains.className = "student-domains";
     student.groups.forEach((group) => {
-      const block = document.createElement("section");
-      block.className = "metric-group compact";
-
-      const title = document.createElement("h4");
-      title.textContent = group.label;
-      block.appendChild(title);
-
-      group.items.forEach((item) => {
-        block.appendChild(metricRow(item));
-      });
-
-      card.appendChild(block);
+      domains.appendChild(studentDomain(group));
     });
 
+    card.append(name, domains);
     studentsEl.appendChild(card);
   });
+
+  const hint = document.createElement("p");
+  hint.className = "student-hint";
+  hint.textContent = "生徒をクリックで詳細表示";
+  studentsEl.appendChild(hint);
 }
 
 function fillMonthSelect(months, selectedMonth) {
@@ -264,7 +304,7 @@ function renderError() {
   clear(studentsEl);
   campusEl.append(heading("校舎の主要指標"), emptyMessage(message));
   alertsEl.append(heading("要確認"), emptyMessage(message));
-  studentsEl.append(heading("生徒ごとの主要指標"), emptyMessage(message));
+  studentsEl.append(heading("各生徒の回答"), emptyMessage(message));
 }
 
 async function refresh(month) {
