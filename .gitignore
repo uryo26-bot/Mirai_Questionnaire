@@ -1,6 +1,8 @@
 ﻿.env
 .env.*
 !.env.example
+sheets-reader.json
+data/live/
 node_modules/
 .DS_Store
 Thumbs.db
